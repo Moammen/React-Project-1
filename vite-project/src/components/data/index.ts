@@ -1,7 +1,5 @@
 
-import type { IProduct } from "../../interfaces";
-
-
+import type { IProduct , IFormInputs } from "../../interfaces";
 
 export const productList : IProduct[] =
  [
@@ -146,5 +144,32 @@ export const productList : IProduct[] =
       imageURL:
         "https://images.unsplash.com/photo-1552831388-6a0b3575b32a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
     },
+  },
+];
+
+export const formInputList : IFormInputs[] = [
+  {
+    id: "title",  
+    label: "Title",
+    type: "text",
+    name: "Enter product title",
+  },  
+  {
+    id : "description",
+    label : "Description",
+    type : "text",
+    name : "Enter product description",
+  },
+  {
+    id : "imageURL",
+    label : "Image URL",
+    type : "text",
+    name : "Enter product image URL",
+  },
+  {
+  id: "price",
+  label: "Price",
+  type: "text",
+  name: "Enter product price",
   },
 ];

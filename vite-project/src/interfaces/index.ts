@@ -12,3 +12,12 @@ export interface IProduct {
   };
 }
 
+export interface IFormInputs {
+id: string;
+name: string;
+label: string;
+type: string;
+
+
+}
+
