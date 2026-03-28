@@ -152,24 +152,25 @@ export const formInputList : IFormInputs[] = [
     id: "title",  
     label: "Title",
     type: "text",
-    name: "Enter product title",
+    name: "title",
+
   },  
   {
     id : "description",
     label : "Description",
     type : "text",
-    name : "Enter product description",
+    name : "description",
   },
   {
     id : "imageURL",
     label : "Image URL",
     type : "text",
-    name : "Enter product image URL",
+    name : "imageURL",
   },
   {
   id: "price",
   label: "Price",
   type: "text",
-  name: "Enter product price",
+  name: "price",
   },
 ];
