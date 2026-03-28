@@ -1,5 +1,5 @@
 
-import type { IProduct , IFormInputs } from "../../interfaces";
+import type { IProduct , IFormInputs } from "../interfaces";
 
 export const productList : IProduct[] =
  [

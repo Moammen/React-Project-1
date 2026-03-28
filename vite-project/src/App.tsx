@@ -1,15 +1,16 @@
 import './index.css'
 import ProductCrd from './components/ProductCrd';
 import type { IProduct } from './interfaces';
-import { productList, formInputList } from './components/data';
+import { productList, formInputList } from './data';
 import Modal from './components/UI/Modal';
 import { useState } from 'react';
 import Input from './components/UI/Input';
 import { Button } from '@headlessui/react';
-
+import { productValidation } from './validation';
+import ErrorMessage from './components/ErrorMessage';
 function App() {
-/*-------------state for modal------------------*/
-  const [product, setProduct ] = useState<IProduct>({
+
+  const defaultProduct: IProduct = {
     title: '',
     description: '',
     imageURL: '',
@@ -19,9 +20,17 @@ function App() {
       name: '',
       imageURL: '',
     },  
-  })
-  const [isOpen, setIsOpen] = useState(false)
+  }   
 
+/*-------------state for modal------------------*/
+  const [product, setProduct ] = useState<IProduct>(defaultProduct)
+  const [isOpen, setIsOpen] = useState(false)
+  const [errors, setErrors] = useState({
+    title: "",
+    description: "",
+    imageURL: "",
+    price: "",
+  });
 /*-------------Handlers for modal----------------__*/
   function closeModal() {
     setIsOpen(false)
@@ -34,10 +43,47 @@ function App() {
     setProduct((prevProduct) => ({
       ...prevProduct,
       [name]: value,
+    })
+    );
+    setErrors(() => ({
+      ...errors,
+      [name]: "",
     }));
+
+
   console.log(product);
   };
-/*-------------Rendering Products------------------*/
+  function submitHandler(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const errors = productValidation(product);
+    setErrors(errors);
+    console.log('Form submitted:', product);
+    console.log('Validation errors:', errors);
+    const hasErrors = Object.values(errors).some((error) => error !== '') ;
+    if (hasErrors) {
+      console.log('Form has validation errors. Please fix them before submitting.');
+      return;
+    }
+    // Here you can add logic to send the product data to a server or update your state
+    closeModal();
+    
+  }
+  function onCansel() {
+    setProduct(defaultProduct)
+    closeModal();
+    setErrors({
+      title: "",
+      description: "",
+      imageURL: "",
+      price: "",
+    });
+    
+  }
+
+
+
+
+/*-------------Rendering Products----------------__*/
   const products = productList.map((product : IProduct) => (<ProductCrd key={product.id} productList={product} />));  
   const formInputs = formInputList.map((input) => (
     <div key={input.id} className="mb-4">
@@ -45,6 +91,7 @@ function App() {
         {input.label}
       </label>
       <Input type={input.type} id={input.id} name={input.name} onChange={handleInputChange} value={product[input.name ]} />
+      <ErrorMessage message={errors[input.name ]} />
     </div>
   ));
 
@@ -55,11 +102,13 @@ function App() {
   <Button onClick={openModal} className="bg-blue-500 text-white hover:bg-blue-600 p-1 rounded-md">Open Modal</Button>
 
     <Modal isOpen={isOpen} closeModal={closeModal}  title="Product Details">
-      {formInputs}
-      <div className="flex flex-row  gap-4">
-        <Button className="bg-blue-500 text-white hover:bg-blue-600 p-1 rounded-md flex-1" >Submit</Button>   
-        <Button className="bg-gray-500 text-white hover:bg-gray-600 p-1 rounded-md flex-1" onClick={closeModal}>Cancel</Button>   
-      </div>
+        <form className="w-full max-w-lg" onSubmit={submitHandler}>
+        {formInputs}
+        <div className="flex flex-row  gap-4">
+          <Button className="bg-blue-500 text-white hover:bg-blue-600 p-1 rounded-md flex-1" type="submit">Submit</Button>   
+          <Button className="bg-gray-500 text-white hover:bg-gray-600 p-1 rounded-md flex-1"  onClick={onCansel}>Cancel</Button>   
+        </div>
+        </form>
     </Modal> 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4  rounded-lg m-5 p-5 border-0">
       {products}
