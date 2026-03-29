@@ -34,8 +34,7 @@ export const productValidation = ( {title, description, imageURL, price} :IProdu
   }
   if (typeof price !== "string") {
     erroors.price = "Price must be a string";
-  }
-  if (isNaN(parseFloat(price)) || parseFloat(price) <= 0) {
+  } else if (isNaN(parseFloat(price)) || parseFloat(price) <= 0) {
     erroors.price = "Price must be a positive number";
   }
 

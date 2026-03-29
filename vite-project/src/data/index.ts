@@ -1,5 +1,5 @@
 
-import type { IProduct , IFormInputs } from "../interfaces";
+import type { IProduct , IFormInputs , ICategory } from "../interfaces";
 
 export const productList : IProduct[] =
  [
@@ -172,5 +172,71 @@ export const formInputList : IFormInputs[] = [
   label: "Price",
   type: "text",
   name: "price",
+  },
+];
+
+export const colors : string[] = [
+  "#A31ACB",
+  "#FF6E31",
+  "#3C2A21",
+  "#CB1C8D",
+  "#645CBB",
+  "#FF0032",
+  "#820000",
+  "#13005A",
+  "#1F8A70",
+  "#84D2C5",
+];  
+
+export const categories: ICategory[] = [
+  {
+    id: 1,
+    name: 'Electronics',
+    avatar: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=256&h=256&q=80',
+  },
+  {
+    id: 2,
+    name: 'Clothing',
+    avatar: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=256&h=256&q=80',
+  },
+  {
+    id: 3,
+    name: 'Shoes',
+    avatar: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=256&h=256&q=80',
+  },
+  {
+    id: 4,
+    name: 'Books',
+    avatar: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=256&h=256&q=80',
+  },
+  {
+    id: 5,
+    name: 'Home & Garden',
+    avatar: 'https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=256&h=256&q=80',
+  },
+  {
+    id: 6,
+    name: 'Sports',
+    avatar: 'https://images.unsplash.com/photo-1461896836934-ffe807baa8e4?w=256&h=256&q=80',
+  },
+  {
+    id: 7,
+    name: 'Toys',
+    avatar: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=256&h=256&q=80',
+  },
+  {
+    id: 8,
+    name: 'Beauty',
+    avatar: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=256&h=256&q=80',
+  },
+  {
+    id: 9,
+    name: 'Automotive',
+    avatar: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=256&h=256&q=80',
+  },
+  {
+    id: 10,
+    name: 'Food',
+    avatar: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=256&h=256&q=80',
   },
 ];

@@ -8,7 +8,7 @@ export interface IProduct {
   colors: string[];
   category: {
     name: string;
-    imageURL: string;
+    avatar: string;
   };
 }
 
@@ -18,6 +18,10 @@ name: 'title' | 'description' | 'imageURL' | 'price';
 label: string;
 type: string;
 
-
+}
+export interface ICategory {
+  id : number ,
+  name :string,
+  avatar :string
 }
 
